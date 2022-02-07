@@ -49,20 +49,22 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
 
     println!("\nWeather from openweathermap.org:\n {:?}", weather2);
+    
 
     // fetch greeting
-      let response = client
-        .get("http://54.204.77.28:3000/v1/hello")
-        .header("Authorization", "Basic ".to_owned() + &js.access_token)
-        .send()
-        .await?;
+    let response = client
+    .get("http://54.204.77.28:3000/v1/hello")
+    .header("Authorization", "Basic ".to_owned() + &js.access_token)
+    .send()
+    .await?;
 
-      let greeting = response.json::<model::GreetingResponse>().await?;
+  let greeting = response.json::<model::GreetingResponse>().await?;
 
-      println!(
-        "\nGreeting from server running on ec2 instance:\n {:?}",
-        greeting.message
-      );
+  println!(
+    "\nGreeting from server running on ec2 instance:\n {:?}",
+    greeting.message
+  );
 
-    Ok(())
+Ok(())
+
 }
